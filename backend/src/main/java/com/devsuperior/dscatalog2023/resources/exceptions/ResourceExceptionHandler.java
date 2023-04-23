@@ -2,7 +2,7 @@ package com.devsuperior.dscatalog2023.resources.exceptions;
 
 import java.time.Instant;
 
-import com.devsuperior.dscatalog2023.services.exception.EntityNotFoundException;
+import com.devsuperior.dscatalog2023.services.exception.ResourceNotFoundException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request){
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<StandardError> entityNotFound(ResourceNotFoundException e, HttpServletRequest request){
 		StandardError err = new StandardError();
 		err.setTimestamp(Instant.now());
 		err.setStatus(HttpStatus.NOT_FOUND.value());
