@@ -1,6 +1,7 @@
 package com.devsuperior.dscatalog2023.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.devsuperior.dscatalog2023.dto.CategoryDTO;
@@ -24,6 +25,12 @@ public class CategoryService {
 	public List<CategoryDTO> findAll() {
 		List<Category> list = repository.findAll();
 		return list.stream().map(CategoryDTO::new).collect(Collectors.toList());
+	}
+
+	public CategoryDTO findByID(Long id) {
+		Optional<Category> optionalEntity = repository.findById(id);
+		Category entity = optionalEntity.get();
+		return new CategoryDTO(entity);
 	}
 
 }
