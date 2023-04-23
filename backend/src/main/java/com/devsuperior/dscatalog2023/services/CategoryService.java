@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.devsuperior.dscatalog2023.dto.CategoryDTO;
 import com.devsuperior.dscatalog2023.entities.Category;
 import com.devsuperior.dscatalog2023.repositories.CategoryRepository;
+import com.devsuperior.dscatalog2023.services.exception.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class CategoryService {
 
 	public CategoryDTO findByID(Long id) {
 		Optional<Category> optionalEntity = repository.findById(id);
-		Category entity = optionalEntity.get();
+		Category entity = optionalEntity.orElseThrow(() -> new EntityNotFoundException("Entity not found!"));
 		return new CategoryDTO(entity);
 	}
 
