@@ -1,11 +1,9 @@
 package com.devsuperior.dscatalog2023.resources;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.devsuperior.dscatalog2023.entities.Category;
 import com.devsuperior.dscatalog2023.services.CategoryService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
