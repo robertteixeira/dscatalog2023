@@ -1,6 +1,5 @@
 package com.devsuperior.dscatalog2023.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import com.devsuperior.dscatalog2023.dto.CategoryDTO;
@@ -12,6 +11,8 @@ import com.devsuperior.dscatalog2023.services.exception.ResourceNotFoundExceptio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +28,9 @@ public class CategoryService {
 	private CategoryRepository repository;
 
 	@Transactional(readOnly = true)
-	public List<CategoryDTO> findAll() {
-		List<Category> list = repository.findAll();
-		return list.stream().map(CategoryDTO::new).toList();
+	public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Category> pageList = repository.findAll(pageRequest);
+		return pageList.map(CategoryDTO::new);
 	}
 
 	public CategoryDTO findByID(Long id) {
